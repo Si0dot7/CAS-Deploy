@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ระบบงบประมาณ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .budget-card {
+            text-align: center;
+            padding: 20px 10px;
+        }
+        .budget-year {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        .budget-amount {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .budget-currency {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        .progress-bar {
+            height: 8px;
+            margin-top: 5px;
+        }
+        .table-responsive {
+            border-radius: 12px;
+        }
+        h5 {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .project-status {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .status-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-4">
+        <div class="row">
+            <!-- Budget Cards Section -->
+            <div class="col-lg-6 mb-4">
+                <h5>จำนวนการจัดซื้อจัดจ้างตามปีงบประมาณ (ล้านบาท)</h5>
+                <div class="row">
+                    <div class="col-6 col-md-3 mb-3">
+                        <div class="card budget-card" style="background-color: #ffe0e3;">
+                            <div class="budget-year">2566</div>
+                            <div class="budget-amount">1000 K</div>
+                            <div class="budget-currency">baht</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <div class="card budget-card" style="background-color: #fff4e0;">
+                            <div class="budget-year">2567</div>
+                            <div class="budget-amount">3000 K</div>
+                            <div class="budget-currency">baht</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <div class="card budget-card" style="background-color: #e3ffe6;">
+                            <div class="budget-year">2568</div>
+                            <div class="budget-amount">5000 K</div>
+                            <div class="budget-currency">baht</div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3">
+                        <div class="card budget-card" style="background-color: #f0e6ff;">
+                            <div class="budget-year">2569</div>
+                            <div class="budget-amount">8000 K</div>
+                            <div class="budget-currency">baht</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Chart Section -->
+            <div class="col-lg-6 mb-4">
+                <h5>การใช้งบประมาณตามรายปี</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="budgetChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Database Types Section -->
+            <div class="col-lg-6 mb-4">
+                <h5>ประเภทของระบบฐานข้อมูลสินทรัพย์</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Popularity</th>
+                                        <th>Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>สำนักบริหารทรัพย์สิน</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-primary" role="progressbar" style="width: 75%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-info">45</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>ศูนย์รักษาความปลอดภัย</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 60%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-success">29</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>สำนักแผนงานและงบประมาณ</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-purple" role="progressbar" style="width: 45%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge" style="background-color: #a97ffc;">18</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>0</td>
+                                        <td>สำนักบริหารงานอาคารและที่พักอาศัย</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 55%"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="badge bg-warning text-dark">25</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Section -->
+            <div class="col-lg-6 mb-4">
+                <h5>จำนวนโครงการที่ดำเนินการ</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="projectsChart" height="200"></canvas>
+                        
+                        <div class="mt-4">
+                            <div class="project-status">
+                                <div class="status-icon bg-success text-white">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <div>จำนวนโครงการที่เสร็จสิ้นแล้ว <strong>8</strong></div>
+                            </div>
+                            <div class="project-status">
+                                <div class="status-icon bg-warning text-white">
+                                    <i class="fas fa-spinner"></i>
+                                </div>
+                                <div>จำนวนโครงการที่กำลังดำเนินการ <strong>12</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Contracts by Day Section -->
+            <div class="col-lg-6 mb-4">
+                <h5>จำนวนสัญญาที่ได้รับการอนุมัติ</h5>
+                <div class="card">
+                    <div class="card-body">
+                        <canvas id="contractsByDayChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contract Trends Section -->
+            <div class="col-lg-6">
+                <h5>แนวโน้มของสัญญาที่ได้รับอนุมัติและมูลค่าของสัญญา</h5>
+                <div class="card">
+                    <div class="card-body h-auto">
+                        <canvas id="contractTrendsChart" height="200"></canvas>
+                        <div class="d-flex justify-content-around mt-3">
+                            <div class="text-center">
+                                <div style="color: #4287f5;">กำลังรออนุมัติ</div>
+                                <div style="font-weight: bold;">มูลค่า 3.4 ล้านบาท</div>
+                            </div>
+                            <div class="text-center">
+                                <div style="color: #42f595;">อนุมัติแล้ว</div>
+                                <div style="font-weight: bold;">มูลค่า 4.5 ล้านบาท</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    
+    <script>
+        // // Budget Chart
+        // const budgetCtx = document.getElementById('budgetChart').getContext('2d');
+        // const budgetChart = new Chart(budgetCtx, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+        //         datasets: [
+        //             {
+        //                 label: '2567',
+        //                 data: [30, 35, 28, 22, 18, 15, 20, 25, 15, 20, 25, 30],
+        //                 borderColor: '#a97ffc',
+        //                 tension: 0.4,
+        //                 fill: false
+        //             },
+        //             {
+        //                 label: '2568',
+        //                 data: [20, 15, 10, -5, -10, 0, 10, 15, 20, 30, 35, 32],
+        //                 borderColor: '#ff6384',
+        //                 tension: 0.4,
+        //                 fill: false
+        //             },
+        //             {
+        //                 label: '2569',
+        //                 data: [15, 20, 25, 20, 15, 20, 25, 30, 25, 30, 35, 32],
+        //                 borderColor: '#36a2eb',
+        //                 tension: 0.4,
+        //                 fill: false
+        //             }
+        //         ]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         plugins: {
+        //             legend: {
+        //                 position: 'bottom',
+        //             }
+        //         },
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+
+        // // Projects Chart
+        // const projectsCtx = document.getElementById('projectsChart').getContext('2d');
+        // const projectsChart = new Chart(projectsCtx, {
+        //     type: 'bar',
+        //     data: {
+        //         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July'],
+        //         datasets: [
+        //             {
+        //                 label: '2568',
+        //                 data: [7, 6, 5, 6, 7, 7, 7],
+        //                 backgroundColor: '#4bc0c0'
+        //             },
+        //             {
+        //                 label: '2569',
+        //                 data: [9, 9, 10, 9, 10, 11, 12],
+        //                 backgroundColor: '#ffcd56'
+        //             }
+        //         ]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         plugins: {
+        //             legend: {
+        //                 position: 'bottom',
+        //             }
+        //         },
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+
+        // // Contracts by Day Chart
+        // const contractsByDayCtx = document.getElementById('contractsByDayChart').getContext('2d');
+        // const contractsByDayChart = new Chart(contractsByDayCtx, {
+        //     type: 'bar',
+        //     data: {
+        //         labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+        //         datasets: [
+        //             {
+        //                 label: '2568',
+        //                 data: [15, 16, 20, 15, 10, 16, 19],
+        //                 backgroundColor: '#36a2eb'
+        //             },
+        //             {
+        //                 label: '2569',
+        //                 data: [13, 14, 6, 8, 12, 14, 10],
+        //                 backgroundColor: '#4bc0c0'
+        //             }
+        //         ]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         plugins: {
+        //             legend: {
+        //                 position: 'bottom',
+        //             }
+        //         },
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true,
+        //                 max: 25
+        //             }
+        //         }
+        //     }
+        // });
+
+        // // Contract Trends Chart
+        // const contractTrendsCtx = document.getElementById('contractTrendsChart').getContext('2d');
+        // const contractTrendsChart = new Chart(contractTrendsCtx, {
+        //     type: 'line',
+        //     data: {
+        //         labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+        //         datasets: [
+        //             {
+        //                 label: 'กำลังรออนุมัติ',
+        //                 data: [12, 13, 10, 8, 10, 9, 12, 15],
+        //                 borderColor: '#4287f5',
+        //                 tension: 0.4,
+        //                 fill: false
+        //             },
+        //             {
+        //                 label: 'อนุมัติแล้ว',
+        //                 data: [20, 18, 19, 17, 20, 18, 15, 22],
+        //                 borderColor: '#42f595',
+        //                 tension: 0.4,
+        //                 fill: false
+        //             }
+        //         ]
+        //     },
+        //     options: {
+        //         responsive: true,
+        //         plugins: {
+        //             legend: {
+        //                 position: 'bottom',
+        //             }
+        //         },
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+    </script>
+</body>
+</html>
