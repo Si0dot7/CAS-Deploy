@@ -22,10 +22,10 @@
         margin: 0;
       }
       .d-flex {
-    display: flex;
-    width: 100%;
-    min-height: 100vh; /* ให้เต็มหน้าจอ */
-}
+        display: flex;
+        width: 100%;
+        min-height: 100vh; /* ให้เต็มหน้าจอ */
+      }
       .sidebar {
         width: 280px;
         background-color: #f8f9fa;
@@ -34,8 +34,8 @@
         height: 100vh;
         overflow-y: auto;
         position: fixed;
-    top: 0;
-    left: 0;
+        top: 0;
+        left: 0;
       }
       .sidebar-header {
         background-color: white;
@@ -85,12 +85,12 @@
         color: white;
       }
       .main-content {
-    flex: 1; /* ขยายเต็มพื้นที่ที่เหลือ */
-    margin-left: 280px;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-}
+        flex: 1; /* ขยายเต็มพื้นที่ที่เหลือ */
+        margin-left: 280px;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
       .navbar-custom {
         background-color: #0c2461;
         color: white;
@@ -108,11 +108,11 @@
         color: white;
       }
       .page-content {
-    flex: 1;
-    height: 100%;
-    overflow-y: auto; /* รองรับการเลื่อน */
-    padding: 1.5rem;
-}
+        flex: 1;
+        height: 100%;
+        overflow-y: auto; /* รองรับการเลื่อน */
+        padding: 1.5rem;
+      }
       /* Dashboard specific styles */
       .card {
         border-radius: 12px;
@@ -227,37 +227,39 @@
 
     <script>
       $(document).ready(function () {
-    function loadPage(path) {
-        $('#other-content').load(path, function (response, status, xhr) {
+        function loadPage(path) {
+          $("#other-content").load(path, function (response, status, xhr) {
             if (status == "error") {
-                $('#other-content').html(`<p style="color:red;">ไม่สามารถโหลดหน้า ${path} ได้</p>`);
+              $("#other-content").html(
+                `<p style="color:red;">ไม่สามารถโหลดหน้า ${path} ได้</p>`
+              );
             } else {
-                // เมื่อโหลดหน้าเสร็จ เช็คว่าหน้าเป็น OverView.html ไหม
-                if (path === "/pages/OverView.html") {
-                    setTimeout(() => {
-                        initializeCharts("budgetChart");
-                    }, 100); // ดีเลย์เล็กน้อยเพื่อให้ Element ถูกสร้างก่อน
-                }
+              // เมื่อโหลดหน้าเสร็จ เช็คว่าหน้าเป็น OverView.html ไหม
+              if (path === "/pages/OverView.html") {
+                setTimeout(() => {
+                  initializeCharts("budgetChart");
+                }, 100); // ดีเลย์เล็กน้อยเพื่อให้ Element ถูกสร้างก่อน
+              }
             }
+          });
+        }
+
+        // โหลดหน้า OverView ตั้งแต่เปิดเว็บ
+        let defaultPage = "/pages/OverView.html";
+        loadPage(defaultPage);
+        $('.nav-link[data-path="' + defaultPage + '"]').addClass("active");
+
+        $(".nav-link").click(function (e) {
+          e.preventDefault();
+          const path = $(this).data("path");
+
+          $(".nav-link").removeClass("active");
+          $(this).addClass("active");
+
+          // โหลดหน้าใหม่
+          loadPage(path);
         });
-    }
-
-    // โหลดหน้า OverView ตั้งแต่เปิดเว็บ
-    let defaultPage = "/pages/OverView.html";
-    loadPage(defaultPage);
-    $('.nav-link[data-path="' + defaultPage + '"]').addClass('active');
-
-    $(".nav-link").click(function (e) {
-        e.preventDefault();
-        const path = $(this).data("path");
-
-        $(".nav-link").removeClass("active");
-        $(this).addClass("active");
-
-        // โหลดหน้าใหม่
-        loadPage(path);
-    });
-});
+      });
 
       function initializeCharts(canvasId) {
         const canvas = document.getElementById(canvasId);
