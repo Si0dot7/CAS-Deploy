@@ -13,6 +13,13 @@
         font-family: "Prompt", sans-serif;
         background-color: #f8f9fa;
       }
+      .main{
+        border: 1px solid rgb(235, 235, 235);
+        box-shadow: 1px 5px 5px  rgb(199, 199, 199);
+        border-radius: 6px;
+        width: 100%;
+      }
+
       .card {
         border-radius: 12px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -63,191 +70,193 @@
     </style>
   </head>
   <body>
-    <div class="container py-4">
-      <div class="row">
-        <!-- Budget Cards Section -->
-        <div class="col-lg-6 mb-4">
-          <h5>จำนวนการจัดซื้อจัดจ้างตามปีงบประมาณ (ล้านบาท)</h5>
-          <div class="row">
-            <div class="col-6 col-md-3 mb-3">
-              <div class="card budget-card" style="background-color: #ffe0e3">
-                <div class="budget-year">2566</div>
-                <div class="budget-amount">1000 K</div>
-                <div class="budget-currency">baht</div>
+    <div class="main">
+      <div class="container py-4 px-4 w-[100%] ">
+        <div class="row">
+          <!-- Budget Cards Section -->
+          <div class="col-lg-6 mb-4">
+            <h5>จำนวนการจัดซื้อจัดจ้างตามปีงบประมาณ (ล้านบาท)</h5>
+            <div class="row">
+              <div class="col-6 col-md-3 mb-3">
+                <div class="card budget-card" style="background-color: #ffe0e3">
+                  <div class="budget-year">2566</div>
+                  <div class="budget-amount">1000 K</div>
+                  <div class="budget-currency">baht</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3 mb-3">
+                <div class="card budget-card" style="background-color: #fff4e0">
+                  <div class="budget-year">2567</div>
+                  <div class="budget-amount">3000 K</div>
+                  <div class="budget-currency">baht</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3 mb-3">
+                <div class="card budget-card" style="background-color: #e3ffe6">
+                  <div class="budget-year">2568</div>
+                  <div class="budget-amount">5000 K</div>
+                  <div class="budget-currency">baht</div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3 mb-3">
+                <div class="card budget-card" style="background-color: #f0e6ff">
+                  <div class="budget-year">2569</div>
+                  <div class="budget-amount">8000 K</div>
+                  <div class="budget-currency">baht</div>
+                </div>
               </div>
             </div>
-            <div class="col-6 col-md-3 mb-3">
-              <div class="card budget-card" style="background-color: #fff4e0">
-                <div class="budget-year">2567</div>
-                <div class="budget-amount">3000 K</div>
-                <div class="budget-currency">baht</div>
-              </div>
-            </div>
-            <div class="col-6 col-md-3 mb-3">
-              <div class="card budget-card" style="background-color: #e3ffe6">
-                <div class="budget-year">2568</div>
-                <div class="budget-amount">5000 K</div>
-                <div class="budget-currency">baht</div>
-              </div>
-            </div>
-            <div class="col-6 col-md-3 mb-3">
-              <div class="card budget-card" style="background-color: #f0e6ff">
-                <div class="budget-year">2569</div>
-                <div class="budget-amount">8000 K</div>
-                <div class="budget-currency">baht</div>
+          </div>
+  
+          <!-- Budget Chart Section -->
+          <div class="col-lg-6 mb-4">
+            <h5>การใช้งบประมาณตามรายปี</h5>
+            <div class="card">
+              <div class="card-body">
+                <canvas id="budgetChart" height="200"></canvas>
               </div>
             </div>
           </div>
         </div>
-
-        <!-- Budget Chart Section -->
-        <div class="col-lg-6 mb-4">
-          <h5>การใช้งบประมาณตามรายปี</h5>
-          <div class="card">
-            <div class="card-body">
-              <canvas id="budgetChart" height="200"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <!-- Database Types Section -->
-        <div class="col-lg-6 mb-4">
-          <h5>ประเภทของระบบฐานข้อมูลสินทรัพย์</h5>
-          <div class="card">
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-borderless">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Name</th>
-                      <th>Popularity</th>
-                      <th>Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>0</td>
-                      <td>สำนักบริหารทรัพย์สิน</td>
-                      <td>
-                        <div class="progress">
-                          <div
-                            class="progress-bar bg-primary"
-                            role="progressbar"
-                            style="width: 75%"
-                          ></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-info">45</span></td>
-                    </tr>
-                    <tr>
-                      <td>0</td>
-                      <td>ศูนย์รักษาความปลอดภัย</td>
-                      <td>
-                        <div class="progress">
-                          <div
-                            class="progress-bar bg-success"
-                            role="progressbar"
-                            style="width: 60%"
-                          ></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">29</span></td>
-                    </tr>
-                    <tr>
-                      <td>0</td>
-                      <td>สำนักแผนงานและงบประมาณ</td>
-                      <td>
-                        <div class="progress">
-                          <div
-                            class="progress-bar bg-purple"
-                            role="progressbar"
-                            style="width: 45%"
-                          ></div>
-                        </div>
-                      </td>
-                      <td>
-                        <span class="badge" style="background-color: #a97ffc"
-                          >18</span
-                        >
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>0</td>
-                      <td>สำนักบริหารงานอาคารและที่พักอาศัย</td>
-                      <td>
-                        <div class="progress">
-                          <div
-                            class="progress-bar bg-warning"
-                            role="progressbar"
-                            style="width: 55%"
-                          ></div>
-                        </div>
-                      </td>
-                      <td>
-                        <span class="badge bg-warning text-dark">25</span>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+  
+        <div class="row">
+          <!-- Database Types Section -->
+          <div class="col-lg-6 mb-4">
+            <h5>ประเภทของระบบฐานข้อมูลสินทรัพย์</h5>
+            <div class="card">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-borderless">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Popularity</th>
+                        <th>Amount</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>0</td>
+                        <td>สำนักบริหารทรัพย์สิน</td>
+                        <td>
+                          <div class="progress">
+                            <div
+                              class="progress-bar bg-primary"
+                              role="progressbar"
+                              style="width: 75%"
+                            ></div>
+                          </div>
+                        </td>
+                        <td><span class="badge bg-info">45</span></td>
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td>ศูนย์รักษาความปลอดภัย</td>
+                        <td>
+                          <div class="progress">
+                            <div
+                              class="progress-bar bg-success"
+                              role="progressbar"
+                              style="width: 60%"
+                            ></div>
+                          </div>
+                        </td>
+                        <td><span class="badge bg-success">29</span></td>
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td>สำนักแผนงานและงบประมาณ</td>
+                        <td>
+                          <div class="progress">
+                            <div
+                              class="progress-bar bg-purple"
+                              role="progressbar"
+                              style="width: 45%"
+                            ></div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="badge" style="background-color: #a97ffc"
+                            >18</span
+                          >
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>0</td>
+                        <td>สำนักบริหารงานอาคารและที่พักอาศัย</td>
+                        <td>
+                          <div class="progress">
+                            <div
+                              class="progress-bar bg-warning"
+                              role="progressbar"
+                              style="width: 55%"
+                            ></div>
+                          </div>
+                        </td>
+                        <td>
+                          <span class="badge bg-warning text-dark">25</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Projects Section -->
-        <div class="col-lg-6 mb-4">
-          <h5>จำนวนโครงการที่ดำเนินการ</h5>
-          <div class="card">
-            <div class="card-body">
-              <canvas id="projectsChart" height="200"></canvas>
-
-              <div class="mt-4">
-                <div class="project-status">
-                  <div class="status-icon bg-success text-white">
-                    <i class="fas fa-check"></i>
+  
+          <!-- Projects Section -->
+          <div class="col-lg-6 mb-4">
+            <h5>จำนวนโครงการที่ดำเนินการ</h5>
+            <div class="card">
+              <div class="card-body">
+                <canvas id="projectsChart" height="200"></canvas>
+  
+                <div class="mt-4">
+                  <div class="project-status">
+                    <div class="status-icon bg-success text-white">
+                      <i class="fas fa-check"></i>
+                    </div>
+                    <div>จำนวนโครงการที่เสร็จสิ้นแล้ว <strong>8</strong></div>
                   </div>
-                  <div>จำนวนโครงการที่เสร็จสิ้นแล้ว <strong>8</strong></div>
-                </div>
-                <div class="project-status">
-                  <div class="status-icon bg-warning text-white">
-                    <i class="fas fa-spinner"></i>
+                  <div class="project-status">
+                    <div class="status-icon bg-warning text-white">
+                      <i class="fas fa-spinner"></i>
+                    </div>
+                    <div>จำนวนโครงการที่กำลังดำเนินการ <strong>12</strong></div>
                   </div>
-                  <div>จำนวนโครงการที่กำลังดำเนินการ <strong>12</strong></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="row">
-        <!-- Contracts by Day Section -->
-        <div class="col-lg-6 mb-4">
-          <h5>จำนวนสัญญาที่ได้รับการอนุมัติ</h5>
-          <div class="card">
-            <div class="card-body">
-              <canvas id="contractsByDayChart" height="200"></canvas>
+  
+        <div class="row">
+          <!-- Contracts by Day Section -->
+          <div class="col-lg-6 mb-4">
+            <h5>จำนวนสัญญาที่ได้รับการอนุมัติ</h5>
+            <div class="card">
+              <div class="card-body">
+                <canvas id="contractsByDayChart" height="200"></canvas>
+              </div>
             </div>
           </div>
-        </div>
-
-        <!-- Contract Trends Section -->
-        <div class="col-lg-6">
-          <h5>แนวโน้มของสัญญาที่ได้รับอนุมัติและมูลค่าของสัญญา</h5>
-          <div class="card">
-            <div class="card-body h-auto">
-              <canvas id="contractTrendsChart" height="200"></canvas>
-              <div class="d-flex justify-content-around mt-3">
-                <div class="text-center">
-                  <div style="color: #4287f5">กำลังรออนุมัติ</div>
-                  <div style="font-weight: bold">มูลค่า 3.4 ล้านบาท</div>
-                </div>
-                <div class="text-center">
-                  <div style="color: #42f595">อนุมัติแล้ว</div>
-                  <div style="font-weight: bold">มูลค่า 4.5 ล้านบาท</div>
+  
+          <!-- Contract Trends Section -->
+          <div class="col-lg-6">
+            <h5>แนวโน้มของสัญญาที่ได้รับอนุมัติและมูลค่าของสัญญา</h5>
+            <div class="card">
+              <div class="card-body h-auto">
+                <canvas id="contractTrendsChart" height="200"></canvas>
+                <div class="d-flex justify-content-around mt-3">
+                  <div class="text-center">
+                    <div style="color: #4287f5">กำลังรออนุมัติ</div>
+                    <div style="font-weight: bold">มูลค่า 3.4 ล้านบาท</div>
+                  </div>
+                  <div class="text-center">
+                    <div style="color: #42f595">อนุมัติแล้ว</div>
+                    <div style="font-weight: bold">มูลค่า 4.5 ล้านบาท</div>
+                  </div>
                 </div>
               </div>
             </div>
